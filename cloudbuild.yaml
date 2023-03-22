@@ -1,17 +1,20 @@
 steps:
 - name: golang:1.20
   id: go-test
+  waitFor: ['-']
   entrypoint: go
   args:
   - test
   - ./...
 - name: golang:1.20
   id: staticcheck
+  waitFor: ['-']
   script: |
     go install honnef.co/go/tools/cmd/staticcheck@latest
     staticcheck ./...
 - name: hadolint/hadolint:latest-debian
   id: hadolint
+  waitFor: ['-']
   entrypoint: hadolint
   args:
   - --ignore=DL3006,DL3007
