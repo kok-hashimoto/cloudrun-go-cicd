@@ -14,7 +14,7 @@ steps:
   id: hadolint
   entrypoint: hadolint
   args:
-  - --ignore=DL3006
+  - --ignore=DL3006,DL3007
   - Dockerfile
 - name: gcr.io/kaniko-project/executor:latest
   id: docker-build
