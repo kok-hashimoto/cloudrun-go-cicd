@@ -3,4 +3,14 @@ steps:
   args:
   - --cache=true
   - --cache-ttl=168h
-  - --destination=us-central1-docker.pkg.dev/clp-cloudpack-ci-dev2-section/kok-hashimoto-cloudrun-go-cicd/web:latest
+  - --destination=us-central1-docker.pkg.dev/clp-cloudpack-ci-dev2-section/kok-hashimoto-cloudrun-go-cicd/web:$COMMIT_SHA
+- name: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+  entrypoint: gcloud
+  args:
+  - run
+  - deploy
+  - kok-hashimoto-cloudrun-go-cicd
+  - --allow-unauthenticated
+  - --execution-environment=gen2
+  - --image=us-central1-docker.pkg.dev/clp-cloudpack-ci-dev2-section/kok-hashimoto-cloudrun-go-cicd/web:$COMMIT_SHA
+  - --region=us-central1
