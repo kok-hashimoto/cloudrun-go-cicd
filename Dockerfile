@@ -7,6 +7,6 @@ COPY . .
 WORKDIR /app/web
 RUN CGO_ENABLED=0 go build
 
-FROM gcr.io/distroless/static-debian11
+FROM gcr.io/distroless/static-debian11:latest AS runtime
 COPY --from=builder /app/web/web /app/web/web
 ENTRYPOINT ["/app/web/web"]
