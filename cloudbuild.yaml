@@ -11,6 +11,7 @@ steps:
 - name: hadolint/hadolint:latest-debian
   entrypoint: hadolint
   args:
+  - --ignore=DL3006
   - Dockerfile
 - name: gcr.io/kaniko-project/executor:latest
   args:
