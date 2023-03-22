@@ -29,7 +29,9 @@ func main() {
 	e.GET("/", hello)
 
 	// Start server
-	err = e.Start(fmt.Sprintf(":%d", port))
+	if err = e.Start(fmt.Sprintf(":%d", port)); err != nil {
+		log.Fatal(err)
+	}
 }
 
 // Handler
